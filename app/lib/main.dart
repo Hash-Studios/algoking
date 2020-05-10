@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'screens/code.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -202,12 +204,23 @@ class _MyAppState extends State<MyApp> {
                     // Padding(padding: EdgeInsets.only(top: 20)),
                     Stack(
                       children: [
-                        Card(
-                          elevation: 10,
-                          color: Color(0xFFFBC02D),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(24),
+                            gradient: LinearGradient(colors: [
+                              Color(0xFFFCA91E),
+                              Color(0xFFFBC02D),
+                              Color(0xFFFFC228),
+                            ]),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Color(0x33000000),
+                                  blurRadius: 20,
+                                  offset: Offset(0, 25),
+                                  spreadRadius: -10)
+                            ],
+                          ),
                           margin: EdgeInsets.fromLTRB(19, 10, 19, 6),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24)),
                           child: Row(
                             children: [
                               Padding(
@@ -281,7 +294,9 @@ class _MyAppState extends State<MyApp> {
                                                 BorderRadius.circular(24)),
                                         child: Container(
                                           width: 160,
-                                          child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
                                               Padding(
                                                 padding:
@@ -302,7 +317,7 @@ class _MyAppState extends State<MyApp> {
                                                           [index2]
                                                       .toString()
                                                       .replaceAll("_", " "),
-                                                      textAlign: TextAlign.center,
+                                                  textAlign: TextAlign.center,
                                                   style:
                                                       GoogleFonts.abrilFatface(
                                                           fontSize: 20),

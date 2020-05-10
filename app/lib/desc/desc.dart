@@ -235,27 +235,163 @@ At the end of the loop, compare the products of first two and last two and print
 Time complexity: O(n)
 Auxiliary Space: O(1)
 """,
-    "Prime_Numbers": """""",
-    "Swap_Numbers": """""",
-    "AVL_Tree": """""",
-    "Array_Methods": """""",
-    "Binary_Search_Tree": """""",
-    "Huffman_Tree": """""",
-    "Infix_to_Postfix": """""",
-    "Infix_to_Prefix": """""",
-    "Intersect_Arrays": """""",
-    "Postfix_to_Infix": """""",
-    "Prefix_to_Infix": """""",
-    "Priority_Queue": """""",
-    "Queue_using_Array": """""",
-    "Queue_using_Linked_List": """""",
-    "Queue_using_Stacks": """""",
-    "Reverse_Linked_List": """""",
-    "Stack_using_Array": """""",
-    "Stack_using_Linked_List": """""",
-    "Stack_using_Queues": """""",
-    "Union_Array": """""",
-    "Union_Sorted_Array": """""",
-    "Knapsack_Problem": """""",
+    "Prime_Numbers":
+        """This is a program to print all prime numbers occurring till a given number.""",
+    "Swap_Numbers": """This is a program to swap two numbers.""",
+    "AVL_Tree":
+        """AVL tree is a self-balancing Binary Search Tree (BST) where the difference between heights of left and right subtrees cannot be more than one for all nodes.""",
+    "Array_Methods":
+        """An array is collection of items stored at contiguous memory locations. The idea is to store multiple items of same type together. This makes it easier to calculate the position of each element by simply adding an offset to a base value, i.e., the memory location of the first element of the array (generally denoted by the name of the array).
+
+For simplicity, we can think of an array a fleet of stairs where on each step is placed a value (let’s say one of your friends). Here, you can identify the location of any of your friends by simply knowing the count of the step they are on.
+Remember: “Location of next index depends on the data type we use”.""",
+    "Binary_Search_Tree":
+        """Binary Search Tree is a node-based binary tree data structure which has the following properties:
+
+The left subtree of a node contains only nodes with keys lesser than the node’s key.
+The right subtree of a node contains only nodes with keys greater than the node’s key.
+The left and right subtree each must also be a binary search tree.""",
+    "Huffman_Tree":
+        """Prefix Codes, means the codes (bit sequences) are assigned in such a way that the code assigned to one character is not the prefix of code assigned to any other character. This is how Huffman Coding makes sure that there is no ambiguity when decoding the generated bitstream.
+Let us understand prefix codes with a counter example. Let there be four characters a, b, c and d, and their corresponding variable length codes be 00, 01, 0 and 1. This coding leads to ambiguity because code assigned to c is the prefix of codes assigned to a and b. If the compressed bit stream is 0001, the de-compressed output may be “cccd” or “ccb” or “acd” or “ab”.
+See this for applications of Huffman Coding.
+
+There are mainly two major parts in Huffman Coding
+1) Build a Huffman Tree from input characters.
+2) Traverse the Huffman Tree and assign codes to characters""",
+    "Infix_to_Postfix":
+        """Infix expression:The expression of the form a op b. When an operator is in-between every pair of operands.
+Postfix expression:The expression of the form a b op. When an operator is followed for every pair of operands.
+
+Why postfix representation of the expression?
+The compiler scans the expression either from left to right or from right to left.""",
+    "Infix_to_Prefix":
+        """While we use infix expressions in our day to day lives. Computers have trouble understanding this format because they need to keep in mind rules of operator precedence and also brackets. Prefix and Postfix expressions are easier for a computer to understand and evaluate.
+
+Given two operands a and b and an operator \odot, the infix notation implies that O will be placed in between a and b i.e  a \odot b . When the operator is placed after both operands i.e ab\odot, it is called postfix notation. And when the operator is placed before the operands i.e  \odot a b, the expression in prefix notation.
+
+Given any infix expression we can obtain the equivalent prefix and postfix format.
+
+""",
+    "Intersect_Arrays":
+        """Given two unsorted arrays that represent two sets (elements in every array are distinct), find union and intersection of two arrays.
+For example, if the input arrays are:
+arr1[] = {7, 1, 5, 2, 3, 6}
+arr2[] = {3, 8, 6, 20, 7}
+Then your program should print Union as {1, 2, 3, 5, 6, 7, 8, 20} and Intersection as {3, 6, 7}. Note that the elements of union and intersection can be printed in any order.""",
+    "Postfix_to_Infix":
+        """Infix expression: The expression of the form a op b. When an operator is in-between every pair of operands.
+Postfix expression: The expression of the form a b op. When an operator is followed for every pair of operands.
+Postfix notation, also known as reverse Polish notation, is a syntax for mathematical expressions in which the mathematical operator is always placed after the operands. Though postfix expressions are easily and efficiently evaluated by computers, they can be difficult for humans to read. Complex expressions using standard parenthesized infix notation are often more readable than the corresponding postfix expressions. Consequently, we would sometimes like to allow end users to work with infix notation and then convert it to postfix notation for computer processing. Sometimes, moreover, expressions are stored or generated in postfix, and we would like to convert them to infix for the purpose of reading and editing
+
+Examples:
+
+Input : abc++
+Output : (a + (b + c))
+
+Input  : ab*c+
+Output : ((a*b)+c)""",
+    "Prefix_to_Infix":
+        """Infix : An expression is called the Infix expression if the operator appears in between the operands in the expression. Simply of the form (operand1 operator operand2).
+Example : (A+B) * (C-D)
+
+Prefix : An expression is called the prefix expression if the operator appears in the expression before the operands. Simply of the form (operator operand1 operand2).
+Example : *+AB-CD (Infix : (A+B) * (C-D) )
+
+Given a Prefix expression, convert it into a Infix expression.
+Computers usually does the computation in either prefix or postfix (usually postfix). But for humans, its easier to understand an Infix expression rather than a prefix. Hence conversion is need for human understanding.
+
+
+
+Examples:
+
+Input :  Prefix :  *+AB-CD
+Output : Infix : ((A+B)*(C-D))
+
+Input :  Prefix :  *-A/BC-/AKL
+Output : Infix : ((A-(B/C))*((A/K)-L)) """,
+    "Priority_Queue":
+        """Priority Queue is an extension of queue with following properties.
+
+Every item has a priority associated with it.
+An element with high priority is dequeued before an element with low priority.
+If two elements have the same priority, they are served according to their order in the queue.""",
+    "Queue_using_Array":
+        """Like Stack, Queue is a linear structure which follows a particular order in which the operations are performed. The order is First In First Out (FIFO).  A good example of queue is any queue of consumers for a resource where the consumer that came first is served first.
+The difference between stacks and queues is in removing. In a stack we remove the item the most recently added; in a queue, we remove the item the least recently added.
+
+Operations on Queue:
+Mainly the following four basic operations are performed on queue:
+
+Enqueue: Adds an item to the queue. If the queue is full, then it is said to be an Overflow condition.
+Dequeue: Removes an item from the queue. The items are popped in the same order in which they are pushed. If the queue is empty, then it is said to be an Underflow condition.
+Front: Get the front item from queue.
+Rear: Get the last item from queue.""",
+    "Queue_using_Linked_List":
+        """In the previous post, we introduced Queue and discussed array implementation. In this post, linked list implementation is discussed. The following two main operations must be implemented efficiently.
+
+In a Queue data structure, we maintain two pointers, front and rear. The front points the first item of queue and rear points to last item.
+
+enQueue() This operation adds a new node after rear and moves rear to the next node.
+
+
+
+deQueue() This operation removes the front node and moves front to the next node.""",
+    "Queue_using_Stacks":
+        """We are given a stack data structure with push and pop operations, the task is to implement a queue using instances of stack data structure and operations on them.""",
+    "Reverse_Linked_List":
+        """Given pointer to the head node of a linked list, the task is to reverse the linked list. We need to reverse the list by changing links between nodes.
+
+Examples:
+
+Input: Head of following linked list
+1->2->3->4->NULL
+Output: Linked list should be changed to,
+4->3->2->1->NULL
+
+Input: Head of following linked list
+1->2->3->4->5->NULL
+Output: Linked list should be changed to,
+5->4->3->2->1->NULL
+
+Input: NULL
+Output: NULL
+
+Input: 1->NULL
+Output: 1->NULL""",
+    "Stack_using_Array":
+        """Stack is a linear data structure which follows a particular order in which the operations are performed. The order may be LIFO(Last In First Out) or FILO(First In Last Out).
+Mainly the following three basic operations are performed in the stack:
+
+Push: Adds an item in the stack. If the stack is full, then it is said to be an Overflow condition.
+Pop: Removes an item from the stack. The items are popped in the reversed order in which they are pushed. If the stack is empty, then it is said to be an Underflow condition.
+Peek or Top: Returns top element of stack.
+isEmpty: Returns true if stack is empty, else false.""",
+    "Stack_using_Linked_List":
+        """Implement a stack using single linked list concept. all the single linked list operations perform based on Stack operations LIFO(last in first out) and with the help of that knowledge we are going to implement a stack using single linked list. using single linked lists so how to implement here it is linked list means what we are storing the information in the form of nodes and we need to follow the stack rules and we need to implement using single linked list nodes so what are the rules we need to follow in the implementation of a stack a simple rule that is last in first out and all the operations we should perform so with the help of a top variable only with the help of top variables are how to insert the elements let’s see""",
+    "Stack_using_Queues":
+        """We are given a Queue data structure that supports standard operations like enqueue() and dequeue(). We need to implement a Stack data structure using only instances of Queue and queue operations allowed on the instances.""",
+    "Union_Array":
+        """Given two unsorted arrays that represent two sets (elements in every array are distinct), find union and intersection of two arrays.
+For example, if the input arrays are:
+arr1[] = {7, 1, 5, 2, 3, 6}
+arr2[] = {3, 8, 6, 20, 7}
+Then your program should print Union as {1, 2, 3, 5, 6, 7, 8, 20} and Intersection as {3, 6, 7}. Note that the elements of union and intersection can be printed in any order.""",
+    "Union_Sorted_Array":
+        """Given two sorted arrays, find their union and intersection.
+
+Example:
+
+Input : arr1[] = {1, 3, 4, 5, 7}
+        arr2[] = {2, 3, 5, 6} 
+Output : Union : {1, 2, 3, 4, 5, 6, 7} 
+         Intersection : {3, 5}
+
+Input : arr1[] = {2, 5, 6}
+        arr2[] = {4, 6, 8, 10} 
+Output : Union : {2, 4, 5, 6, 8, 10} 
+         Intersection : {6}""",
+    "Knapsack_Problem":
+        """Given weights and values of n items, put these items in a knapsack of capacity W to get the maximum total value in the knapsack. In other words, given two integer arrays val[0..n-1] and wt[0..n-1] which represent values and weights associated with n items respectively. Also given an integer W which represents knapsack capacity, find out the maximum value subset of val[] such that sum of the weights of this subset is smaller than or equal to W. You cannot break an item, either pick the complete item, or don’t pick it (0-1 property).""",
   };
 }

@@ -116,15 +116,141 @@ void main(){
   sort(list);
   print(list);
 }""",
-    "Insertion_Sort": """""",
+    "Insertion_Sort": """import 'dart:math' show Random;
+
+void main() {
+  final seed = 100, rnd = Random(), length = 100;
+  var list =
+      List<int>.generate(length, (i) => rnd.nextInt(seed), growable: false);
+  print('before sorting:');
+  print(list);
+  print('----------------------------------------------');
+  print('After sorting:');
+  insertSort(list);
+  print(list);
+}
+
+void insertSort(List<int> a) {
+  for (var i = 1; i < a.length; i++) {
+    int j, t = a[i];
+    for (j = i - 1; j >= 0 && t < a[j]; j--) {
+      a[j + 1] = a[j];
+    }
+    if (j < i - 1) a[j + 1] = t;
+  }
+}""",
     "Merge_Sort": """""",
-    "Quick_Sort": """""",
-    "Selection_Sort": """""",
+    "Quick_Sort": """import 'dart:math' show Random;
+void main() {
+  var list = List<int>();
+  Random random = new Random();
+  for (var i = 0; i < 100; i++) {
+    list.add(random.nextInt(100));
+  }
+  print('before sorting:');
+  print(list);
+  print('---------------------------------------------');
+  print('After sorting:');
+  print(quickSort(list));
+}
+
+List<int> quickSort(List<int> a) {
+  if (a.length < 2) {
+    return a;
+  } else {
+    var pivot = a[0];
+    var less = <int>[];
+    var greater = <int>[];
+    a.removeAt(0);
+    for (var i in a) {
+      if (i <= pivot) {
+        less.add(i);
+      } else {
+        greater.add(i);
+      }
+    }
+    return quickSort(less) + [pivot] + quickSort(greater);
+  }
+}""",
+    "Selection_Sort": """import 'dart:math' show Random;
+void main() {
+  final seed = 100, rnd = Random(), length = 100;
+  var list =
+      List<int>.generate(length, (i) => rnd.nextInt(seed), growable: false);
+  print('before sorting:');
+  print(list);
+  print('--------------------------------------');
+  print('After sorting:');
+  selectSort(list);
+  print(list);
+}
+
+void selectSort(List<int> a) {
+  for (var i = 0; i < a.length - 1; i++) {
+    var mi = i;
+    for (var j = i + 1; j < a.length; j++) {
+      if (a[j] < a[mi]) mi = j;
+    }
+    if (i != mi) {
+      var t = a[i];
+      a[i] = a[mi];
+      a[mi] = t;
+    }
+  }
+}""",
     "Even_Odd": """""",
-    "Factorial": """""",
-    "Fibonacci": """""",
-    "Greatest_Common_Divisor": """""",
-    "Lowest_Common_Multiple": """""",
+    "Factorial": """void main() {
+  var n = 5;
+  var fac = factorial(n);
+  print(n.toString()+"! = "+fac.toString());
+}
+int factorial(var n) {
+  var fac = 1;
+  for (int i = 2; i <= n; ++i) {
+    fac *= i;
+  }
+  return fac;
+}""",
+    "Fibonacci": """int fibonacci(int n) =>
+    n == 1 || n == 2 ? 1 : fibonacci(n - 1) + fibonacci(n - 2);
+
+void main() {
+  fibonacci(7);
+}""",
+    "Greatest_Common_Divisor": """euclidean_gcd(var a, var b) {
+  while (b != 0) {
+    var t = b;
+    b = a % b;
+    a = t;
+  }
+  return a;
+}
+
+void main() {
+  print('GCD(1, 4) = ' + euclidean_gcd(1, 4).toString());
+  print('GCD(5, 3) = ' + euclidean_gcd(5, 3).toString());
+  print('GCD(3, 6) = ' + euclidean_gcd(3, 6).toString());
+  print('GCD(8, 4) = ' + euclidean_gcd(8, 4).toString());
+}""",
+    "Lowest_Common_Multiple": """double gcd(var a,var b){
+  if(a == 0){
+    return b;
+  }
+  return gcd(b % a,a);
+}
+double lcm(var a,var b){
+  return (a * b) / gcd(a,b);
+}
+
+void main(){
+  var a,b;
+  a = 15;
+  b = 20;
+  print("LCM of " + a.toString() + " and " + b.toString() + " is " + lcm(a,b).toString());
+  a = 12;
+  b = 18;
+  print("LCM of " + a.toString() + " and " + b.toString() + " is " + lcm(a,b).toString());
+}""",
     "Max_Pairwise_Product": """""",
     "Prime_Numbers": """""",
     "Swap_Numbers": """""",
@@ -213,12 +339,180 @@ void main(){
     "Postfix_to_Infix": """""",
     "Prefix_to_Infix": """""",
     "Priority_Queue": """""",
-    "Queue_using_Array": """""",
+    "Queue_using_Array": """const int MAX_SIZE = 10;
+
+class ListQueue<T>{
+  
+  int count = 0;
+  List<T> queue = new List<T>(MAX_SIZE);
+  bool hasElements(){
+    if(queue.length == 0){
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+  void enque(T elment){
+    if(count == MAX_SIZE){
+      print("The queue is full!!!");
+    }
+    else{
+      queue[count] = elment;
+      count++;
+    }
+  }
+  T deque(){
+    T result = null;
+    if(count == 0){
+      print("The queue is empty!!!");
+    }
+    else{
+      result = queue[0];
+      for(int i = 0; i < queue.length - 1; i++){
+        queue[i] = queue[i + 1];
+      }
+    }
+    return result;
+  }
+}
+
+void main(){
+  ListQueue<int> Queue = new ListQueue<int>();
+  Queue.enque(12);
+  Queue.enque(2);
+  Queue.enque(7);
+  print(Queue.queue);
+  print("Enque:");
+  var returnData = Queue.deque();
+  print(returnData.toString()+"\n");
+  print("Enque:");
+  returnData = Queue.deque();
+  print(returnData.toString()+"\n");
+  print("Enque:");
+  returnData = Queue.deque();
+  print(returnData.toString()+"\n");
+  print("Now the queue is: " + (Queue.queue).toString());
+}""",
     "Queue_using_Linked_List": """""",
     "Queue_using_Stacks": """""",
     "Reverse_Linked_List": """""",
-    "Stack_using_Array": """""",
-    "Stack_using_Linked_List": """""",
+    "Stack_using_Array": """class ArrayStack<T>{
+  List<T> stack;
+  int count;
+  int n;
+
+  ArrayStack(var n){
+    this.n = n;
+    this.stack = new List<T>(n);
+    this.count = 0;
+  }
+  void push(T item){
+    if(count == n){
+      print("The stack is full\n");
+    }
+    stack[count] = item;
+    count++;
+  }
+  T pop(){
+    if(count == 0){
+      print("No data in the stack!\n");
+    }
+    T pop_data = stack[count - 1];
+    stack[count - 1] = null;
+    count--;
+    return pop_data;
+  }
+  
+  void Display(){
+    print("ArrayStack: "+stack.toString()+"\n");
+  }
+}
+
+void main(){
+  ArrayStack<String> array_stack = new ArrayStack<String>(6);
+  
+  array_stack.push('1');
+  array_stack.push("2");
+  array_stack.push('3');
+  array_stack.push("4");
+  array_stack.push('5');
+  array_stack.push("6");
+  
+  array_stack.Display();
+  
+  var pop_data;
+  pop_data = array_stack.pop();
+  print("Pop "+pop_data.toString()+" from stack\n");
+  pop_data = array_stack.pop();
+  print("Pop "+pop_data.toString()+" from stack\n");
+  print("Now the stock:");
+   array_stack.Display();
+}""",
+    "Stack_using_Linked_List": """class Node<T>{
+  T data;
+  Node next;
+  
+  Node(T data){
+    this.data = data;
+    this.next = null;
+  }
+}
+
+class LinkedListStack<T>{
+  Node<T> head;
+  int size;
+  
+  LinkedListStack(){
+    this.head = null;
+    this.size = 0;
+  }
+  void push(T element){
+       Node<T> newNode = new Node<T>(element);
+       newNode.next = this.head;
+       this.head = newNode;
+       this.size++;
+  }
+  T pop(){
+    T returnData = null;
+    if(size == 0){
+      print("The stack is empty!!!");
+    }
+    else{
+      Node<T> destroy = this.head;
+      this.head = this.head.next;
+      returnData = destroy.data;
+      this.size--;
+    }
+    return returnData;
+  }
+  
+  bool isEmpty(){
+    return this.size == 0;
+  }
+  
+  int getSize(){
+    return this.size;
+  }
+}
+
+int main(){
+  LinkedListStack<String> Stack = new LinkedListStack<String>();
+  var returnData;
+  print("Push 2 5 9 7 to the stack\n");
+  Stack.push("2");
+  Stack.push("5");
+  Stack.push("9");
+  Stack.push("7");
+  print("Successful push!\n");
+  returnData = Stack.pop();
+  print("Pop a data: "+returnData.toString()+"\n");
+  returnData = Stack.pop();
+  print("Pop a data: "+returnData.toString()+"\n");
+  returnData = Stack.pop();
+  print("Pop a data: "+returnData.toString()+"\n");
+  return 0;
+}""",
     "Stack_using_Queues": """""",
     "Union_Array": """""",
     "Union_Sorted_Array": """""",

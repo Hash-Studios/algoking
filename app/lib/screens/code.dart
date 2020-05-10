@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:backdrop/backdrop.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
 class CodeBD extends StatefulWidget {
   String title;
@@ -12,6 +13,17 @@ class CodeBD extends StatefulWidget {
 }
 
 class _CodeBDState extends State<CodeBD> {
+  String code = """
+// Importing core libraries
+import 'dart:math';
+int fibonacci(int n) {
+  if (n == 0 || n == 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}          
+var result = fibonacci(20);
+/* and there 
+    you have it! */
+                """;
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 720, height: 1440, allowFontScaling: true);
@@ -28,50 +40,57 @@ class _CodeBDState extends State<CodeBD> {
         headerHeight: 100.h,
         iconPosition: BackdropIconPosition.none,
         title: Text(widget.title.replaceAll("_", " ")),
-        backLayer: Scaffold(
-          appBar: AppBar(
-            leading: Container(),
-            bottom: TabBar(tabs: [
-              Tab(
-                icon: Icon(Icons.code),
-              ),
-              Tab(
-                icon: Icon(Icons.pages),
-              ),
-              Tab(
-                icon: Icon(Icons.folder),
-              ),
-            ]),
-          ),
-          body: TabBarView(children: [
-            new Container(
-              color: Colors.redAccent,
-              child: Center(
-                child: Text(
-                  'C++',
-                  style: TextStyle(color: Colors.white),
+        backLayer: Column(
+          children: <Widget>[
+            TabBar(
+              indicatorColor: Colors.white,
+              tabs: [
+                Tab(
+                  icon: Icon(Icons.code),
                 ),
-              ),
-            ),
-            new Container(
-              color: Colors.greenAccent,
-              child: Center(
-                child: Text(
-                  'Python',
-                  style: TextStyle(color: Colors.white),
+                Tab(
+                  icon: Icon(Icons.pages),
                 ),
-              ),
-            ),
-            new Container(
-              color: Colors.blueAccent,
-              child: Center(
-                child: Text(
-                  'Dart',
-                  style: TextStyle(color: Colors.white),
+                Tab(
+                  icon: Icon(Icons.folder),
                 ),
-              ),
+              ],
             ),
-          ]),
+            Expanded(
+              child: TabBarView(children: [
+                new Container(
+                  color: Colors.redAccent,
+                  child: SyntaxView(
+                    code: code,
+                    syntax: Syntax.DART,
+                    syntaxTheme: SyntaxTheme.dracula(),
+                    withZoom: true,
+                    withLinesCount: true,
+                  ),
+                ),
+                new Container(
+                  color: Colors.greenAccent,
+                  child: SyntaxView(
+                    code: code,
+                    syntax: Syntax.DART,
+                    syntaxTheme: SyntaxTheme.dracula(),
+                    withZoom: true,
+                    withLinesCount: true,
+                  ),
+                ),
+                new Container(
+                  color: Colors.blueAccent,
+                  child: SyntaxView(
+                    code: code,
+                    syntax: Syntax.DART,
+                    syntaxTheme: SyntaxTheme.dracula(),
+                    withZoom: true,
+                    withLinesCount: true,
+                  ),
+                ),
+              ]),
+            ),
+          ],
         ),
         frontLayer: Stack(
           children: <Widget>[
@@ -103,15 +122,18 @@ class _CodeBDState extends State<CodeBD> {
               ),
             ),
             Positioned(
-              top: 30.h,
-              left: 290.w,
+              top: 35.h,
               child: SizedBox(
                 height: 1300.h,
                 width: 720.w,
-                child: Container(
-                  child: Text(
-                    "Description",
-                    style: TextStyle(fontSize: 20),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    child: Text(
+                      "Description",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    ),
                   ),
                 ),
               ),

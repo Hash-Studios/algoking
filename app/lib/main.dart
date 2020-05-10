@@ -337,8 +337,8 @@ class _MyAppState extends State<MyApp> {
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(24),
                                         child: MaterialButton(
-                                          child:
-                                              SizedBox(height: 359.h, width: 232.w),
+                                          child: SizedBox(
+                                              height: 359.h, width: 232.w),
                                           onPressed: () {
                                             HapticFeedback.vibrate();
                                             Navigator.push(context,

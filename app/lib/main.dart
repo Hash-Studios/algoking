@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_group_sliver/flutter_group_sliver.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,6 +15,44 @@ class _MyAppState extends State<MyApp> {
   bool _pinned = true;
   bool _snap = false;
   bool _floating = false;
+  List isOpen = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+  List leadingIcons = [
+    "assets/images/graph.png",
+    "assets/images/search.png",
+    "assets/images/sort.png",
+    "assets/images/plus.png",
+    "assets/images/data.png",
+    "assets/images/process.png",
+  ];
+  List listText = [
+    "Graph",
+    "Search",
+    "Sort",
+    "Maths",
+    "Data Structures",
+    "Greedy"
+  ];
+  List trailingIcons = [
+    "assets/images/Cityscapes Downtown.png",
+    "assets/images/Cityscapes Downtown-1.png",
+    "assets/images/Cityscapes Downtown-2.png",
+    "assets/images/Cityscapes Downtown-3.png",
+    "assets/images/Cityscapes Downtown-4.png",
+    "assets/images/Cityscapes Downtown-5.png",
+  ];
+  void changeIsOpen(int index) {
+    setState(() {
+      isOpen[index] = isOpen[index] ? false : true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -80,9 +118,10 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
-              SliverList(
-                  delegate: new SliverChildListDelegate([
-                Stack(
+              SliverList(delegate: new SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                if (index > listText.length - 1) return null;
+                return Stack(
                   children: [
                     Card(
                       elevation: 10,
@@ -90,245 +129,59 @@ class _MyAppState extends State<MyApp> {
                       margin: EdgeInsets.fromLTRB(19, 24, 19, 6),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 25.0, horizontal: 10),
-                        child: ExpansionTile(
-                          leading: Image.asset(
-                            "assets/images/graph.png",
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset(
+                              leadingIcons[index],
+                              height: 75,
+                            ),
                           ),
-                          title: new Text(
-                            'Graph',
-                            style: GoogleFonts.bebasNeue(fontSize: 24),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
+                            child: Text(
+                              listText[index],
+                              style: GoogleFonts.bebasNeue(fontSize: 24),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 32, 50, 0),
+                          padding: const EdgeInsets.fromLTRB(0, 33, 50, 0),
                           child: Opacity(
                             opacity: 0.8,
                             child: Image.asset(
-                              "assets/images/Cityscapes Downtown.png",
-                              color: Color(0xFFFBC02D),
-                              colorBlendMode: BlendMode.overlay,
+                              trailingIcons[index],
+                              // color: Color(0xFFFBC02D),
+                              // colorBlendMode: BlendMode.overlay,
                               height: 95,
                             ),
                           ),
                         ),
                       ],
                     ),
-                  ],
-                ),
-                Stack(
-                  children: [
-                    Card(
-                      elevation: 10,
-                      color: Color(0xFFFBC02D),
-                      margin: EdgeInsets.fromLTRB(19, 24, 19, 6),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 25.0, horizontal: 10),
-                        child: ExpansionTile(
-                          leading: Image.asset(
-                            "assets/images/search.png",
-                          ),
-                          title: new Text(
-                            'Search',
-                            style: GoogleFonts.bebasNeue(fontSize: 24),
-                          ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(19, 24, 19, 6),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(24),
+                        child: MaterialButton(
+                          child: SizedBox(height: 91, width: 500),
+                          onPressed: () {
+                            HapticFeedback.vibrate();
+                            changeIsOpen(index);
+                            print(isOpen);
+                          },
                         ),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 32, 50, 0),
-                          child: Opacity(
-                            opacity: 0.8,
-                            child: Image.asset(
-                              "assets/images/Cityscapes Downtown-1.png",
-                              color: Color(0xFFFBC02D),
-                              colorBlendMode: BlendMode.overlay,
-                              height: 95,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                   ],
-                ),
-                Stack(
-                  children: [
-                    Card(
-                      elevation: 10,
-                      color: Color(0xFFFBC02D),
-                      margin: EdgeInsets.fromLTRB(19, 24, 19, 6),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 25.0, horizontal: 10),
-                        child: ExpansionTile(
-                          leading: Image.asset(
-                            "assets/images/sort.png",
-                          ),
-                          title: new Text(
-                            'Sort',
-                            style: GoogleFonts.bebasNeue(fontSize: 24),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 32, 50, 0),
-                          child: Opacity(
-                            opacity: 0.8,
-                            child: Image.asset(
-                              "assets/images/Cityscapes Downtown-2.png",
-                              color: Color(0xFFFBC02D),
-                              colorBlendMode: BlendMode.overlay,
-                              height: 95,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Stack(
-                  children: [
-                    Card(
-                      elevation: 10,
-                      color: Color(0xFFFBC02D),
-                      margin: EdgeInsets.fromLTRB(19, 24, 19, 6),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 25.0, horizontal: 10),
-                        child: ExpansionTile(
-                          leading: Image.asset(
-                            "assets/images/plus.png",
-                          ),
-                          title: new Text(
-                            'Maths',
-                            style: GoogleFonts.bebasNeue(fontSize: 24),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 32, 50, 0),
-                          child: Opacity(
-                            opacity: 0.8,
-                            child: Image.asset(
-                              "assets/images/Cityscapes Downtown-3.png",
-                              color: Color(0xFFFBC02D),
-                              colorBlendMode: BlendMode.overlay,
-                              height: 95,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Stack(
-                  children: [
-                    Card(
-                      elevation: 10,
-                      color: Color(0xFFFBC02D),
-                      margin: EdgeInsets.fromLTRB(19, 24, 19, 6),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 25.0, horizontal: 10),
-                        child: ExpansionTile(
-                          leading: Image.asset(
-                            "assets/images/data.png",
-                          ),
-                          title: new Text(
-                            'Data Structures',
-                            style: GoogleFonts.bebasNeue(fontSize: 24),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 32, 50, 0),
-                          child: Opacity(
-                            opacity: 0.8,
-                            child: Image.asset(
-                              "assets/images/Cityscapes Downtown-4.png",
-                              color: Color(0xFFFBC02D),
-                              colorBlendMode: BlendMode.overlay,
-                              height: 95,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Stack(
-                  children: [
-                    Card(
-                      elevation: 10,
-                      color: Color(0xFFFBC02D),
-                      margin: EdgeInsets.fromLTRB(19, 24, 19, 6),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 25.0, horizontal: 10),
-                        child: ExpansionTile(
-                          leading: Image.asset(
-                            "assets/images/process.png",
-                          ),
-                          title: new Text(
-                            'Greedy',
-                            style: GoogleFonts.bebasNeue(fontSize: 24),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 32, 50, 0),
-                          child: Opacity(
-                            opacity: 0.8,
-                            child: Image.asset(
-                              "assets/images/Cityscapes Downtown-5.png",
-                              color: Color(0xFFFBC02D),
-                              colorBlendMode: BlendMode.overlay,
-                              height: 95,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ]))
+                );
+              }))
               // SliverFixedExtentList(
               //   itemExtent: 350.0,
               //   delegate: SliverChildListDelegate.fixed(

@@ -69,13 +69,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_group_sliver:
-    dependency: "direct main"
-    description:
-      name: flutter_group_sliver
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter

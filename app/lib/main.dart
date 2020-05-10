@@ -13,7 +13,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.blueGrey),
+        theme: ThemeData(primarySwatch: Colors.amber),
         color: Colors.grey,
         home: MyApp());
   }
@@ -151,7 +151,7 @@ class _MyAppState extends State<MyApp> {
         child: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
-              elevation: 20,
+              elevation: 8,
 
               // stretchTriggerOffset: 400,
               shape: RoundedRectangleBorder(
@@ -220,13 +220,13 @@ class _MyAppState extends State<MyApp> {
                             Color(0xFFFBC02D),
                             Color(0xFFFFC228),
                           ]),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color(0x33000000),
-                                blurRadius: 20,
-                                offset: Offset(0, 25),
-                                spreadRadius: -10)
-                          ],
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //       color: Color(0x33000000),
+                          //       blurRadius: 20,
+                          //       offset: Offset(0, 25),
+                          //       spreadRadius: -10)
+                          // ],
                         ),
                         margin: EdgeInsets.fromLTRB(19, 10, 19, 6),
                         child: Row(
@@ -295,13 +295,13 @@ class _MyAppState extends State<MyApp> {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(24),
                                         color: Colors.white,
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: Color(0x33000000),
-                                              blurRadius: 20,
-                                              offset: Offset(0, 25),
-                                              spreadRadius: -10)
-                                        ],
+                                        // boxShadow: [
+                                        //   BoxShadow(
+                                        //       color: Color(0x33000000),
+                                        //       blurRadius: 20,
+                                        //       offset: Offset(0, 25),
+                                        //       spreadRadius: -10)
+                                        // ],
                                       ),
                                       margin: EdgeInsets.fromLTRB(19, 10, 0, 6),
                                       child: Container(

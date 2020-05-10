@@ -3,6 +3,10 @@ import 'package:backdrop/backdrop.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
+import 'package:app/desc/desc.dart';
+import 'package:app/code/python.dart';
+import 'package:app/code/cpp.dart';
+import 'package:app/code/dart.dart';
 
 class CodeBD extends StatefulWidget {
   String title;
@@ -112,8 +116,8 @@ int main() {
                 new Container(
                   color: Colors.redAccent,
                   child: SyntaxView(
-                    code: code,
-                    syntax: Syntax.JAVA,
+                    code: CPP.code[widget.title],
+                    syntax: Syntax.DART,
                     syntaxTheme: SyntaxTheme.dracula(),
                     withZoom: true,
                     withLinesCount: true,
@@ -122,8 +126,8 @@ int main() {
                 new Container(
                   color: Colors.greenAccent,
                   child: SyntaxView(
-                    code: code,
-                    syntax: Syntax.JAVASCRIPT,
+                    code: PYTHON.code[widget.title],
+                    syntax: Syntax.DART,
                     syntaxTheme: SyntaxTheme.dracula(),
                     withZoom: true,
                     withLinesCount: true,
@@ -132,8 +136,8 @@ int main() {
                 new Container(
                   color: Colors.blueAccent,
                   child: SyntaxView(
-                    code: code,
-                    syntax: Syntax.SWIFT,
+                    code: DART.code[widget.title],
+                    syntax: Syntax.DART,
                     syntaxTheme: SyntaxTheme.dracula(),
                     withZoom: true,
                     withLinesCount: true,
@@ -171,9 +175,12 @@ int main() {
                   width: 650.w,
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                        style: GoogleFonts.roboto(fontSize: 18)),
+                    child: Scrollbar(
+                      child: SingleChildScrollView(
+                        child: Text(Desc.code[widget.title],
+                            style: GoogleFonts.roboto(fontSize: 18)),
+                      ),
+                    ),
                   ),
                 ),
               ),

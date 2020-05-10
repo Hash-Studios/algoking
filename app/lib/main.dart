@@ -291,12 +291,19 @@ class _MyAppState extends State<MyApp> {
                               itemBuilder: (BuildContext context, int index2) {
                                 return Stack(
                                   children: [
-                                    Card(
-                                      elevation: 0,
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(24),
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Color(0x33000000),
+                                              blurRadius: 20,
+                                              offset: Offset(0, 25),
+                                              spreadRadius: -10)
+                                        ],
+                                      ),
                                       margin: EdgeInsets.fromLTRB(19, 10, 0, 6),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(24)),
                                       child: Container(
                                         width: 290.w,
                                         child: Column(

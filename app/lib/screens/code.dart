@@ -14,16 +14,66 @@ class CodeBD extends StatefulWidget {
 
 class _CodeBDState extends State<CodeBD> {
   String code = """
-// Importing core libraries
-import 'dart:math';
-int fibonacci(int n) {
-  if (n == 0 || n == 1) return n;
-  return fibonacci(n - 1) + fibonacci(n - 2);
-}          
-var result = fibonacci(20);
-/* and there 
-    you have it! */
-                """;
+Live Demo
+
+#include <iostream> 
+using namespace std;
+ 
+class Shape {
+   protected:
+      int width, height;
+      
+   public:
+      Shape( int a = 0, int b = 0){
+         width = a;
+         height = b;
+      }
+      int area() {
+         cout << "Parent class area :" <<endl;
+         return 0;
+      }
+};
+class Rectangle: public Shape {
+   public:
+      Rectangle( int a = 0, int b = 0):Shape(a, b) { }
+      
+      int area () { 
+         cout << "Rectangle class area :" <<endl;
+         return (width * height); 
+      }
+};
+
+class Triangle: public Shape {
+   public:
+      Triangle( int a = 0, int b = 0):Shape(a, b) { }
+      
+      int area () { 
+         cout << "Triangle class area :" <<endl;
+         return (width * height / 2); 
+      }
+};
+
+// Main function for the program
+int main() {
+   Shape *shape;
+   Rectangle rec(10,7);
+   Triangle  tri(10,5);
+
+   // store the address of Rectangle
+   shape = &rec;
+   
+   // call rectangle area.
+   shape->area();
+
+   // store the address of Triangle
+   shape = &tri;
+   
+   // call triangle area.
+   shape->area();
+   
+   return 0;
+}
+""";
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 720, height: 1440, allowFontScaling: true);
@@ -57,12 +107,13 @@ var result = fibonacci(20);
               ],
             ),
             Expanded(
+              flex: 13,
               child: TabBarView(children: [
                 new Container(
                   color: Colors.redAccent,
                   child: SyntaxView(
                     code: code,
-                    syntax: Syntax.DART,
+                    syntax: Syntax.JAVA,
                     syntaxTheme: SyntaxTheme.dracula(),
                     withZoom: true,
                     withLinesCount: true,
@@ -72,7 +123,7 @@ var result = fibonacci(20);
                   color: Colors.greenAccent,
                   child: SyntaxView(
                     code: code,
-                    syntax: Syntax.DART,
+                    syntax: Syntax.JAVASCRIPT,
                     syntaxTheme: SyntaxTheme.dracula(),
                     withZoom: true,
                     withLinesCount: true,
@@ -82,7 +133,7 @@ var result = fibonacci(20);
                   color: Colors.blueAccent,
                   child: SyntaxView(
                     code: code,
-                    syntax: Syntax.DART,
+                    syntax: Syntax.SWIFT,
                     syntaxTheme: SyntaxTheme.dracula(),
                     withZoom: true,
                     withLinesCount: true,
@@ -90,6 +141,12 @@ var result = fibonacci(20);
                 ),
               ]),
             ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                color: Colors.blueGrey[900],
+              ),
+            )
           ],
         ),
         frontLayer: Stack(

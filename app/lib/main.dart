@@ -47,6 +47,80 @@ class _MyAppState extends State<MyApp> {
     "assets/images/Cityscapes Downtown-4.png",
     "assets/images/Cityscapes Downtown-5.png",
   ];
+  Map database = {
+    "Graph": ["Depth_First_Search", "Breadth_First_Search"],
+    "Search": ["Binary_Search", "Linear_Search"],
+    "Sort": [
+      "Bubble_Sort",
+      "Heap_Sort",
+      "Insertion_Sort",
+      "Merge_Sort",
+      "Quick_Sort",
+      "Selection_Sort"
+    ],
+    "Maths": [
+      "Even_Odd",
+      "Factorial",
+      "Fibonacci",
+      "Greatest_Common_Divisor",
+      "Lowest_Common_Multiple",
+      "Max_Pairwise_Product",
+      "Prime_Numbers",
+      "Swap_Numbers"
+    ],
+    "Data Structures": [
+      "AVL_Tree",
+      "Array_Methods",
+      "Binary_Search_Tree",
+      "Huffman_Tree",
+      "Infix_to_Postfix",
+      "Infix_to_Prefix",
+      "Intersect_Arrays",
+      "Postfix_to_Infix",
+      "Prefix_to_Infix",
+      "Priority_Queue",
+      "Queue_using_Array",
+      "Queue_using_Linked_List",
+      "Queue_using_Stacks",
+      "Reverse_Linked_List",
+      "Stack_using_Array",
+      "Stack_using_Linked_List",
+      "Stack_using_Queues",
+      "Union_Array",
+      "Union_Sorted_Array"
+    ],
+    "Greedy": ["Knapsack_Problem"],
+  };
+  List numbers = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+  ];
   void changeIsOpen(int index) {
     setState(() {
       isOpen[index] = isOpen[index] ? false : true;
@@ -55,7 +129,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    numbers.shuffle();
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.grey),
       color: Colors.grey,
       home: Scaffold(
@@ -121,64 +197,141 @@ class _MyAppState extends State<MyApp> {
               SliverList(delegate: new SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                 if (index > listText.length - 1) return null;
-                return Stack(
+                return Column(
                   children: [
-                    Card(
-                      elevation: 10,
-                      color: Color(0xFFFBC02D),
-                      margin: EdgeInsets.fromLTRB(19, 24, 19, 6),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24)),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Image.asset(
-                              leadingIcons[index],
-                              height: 75,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
-                            child: Text(
-                              listText[index],
-                              style: GoogleFonts.bebasNeue(fontSize: 24),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                    // Padding(padding: EdgeInsets.only(top: 20)),
+                    Stack(
                       children: [
+                        Card(
+                          elevation: 10,
+                          color: Color(0xFFFBC02D),
+                          margin: EdgeInsets.fromLTRB(19, 10, 19, 6),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(24)),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 17, horizontal: 14.0),
+                                child: Image.asset(
+                                  leadingIcons[index],
+                                  height: 55,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
+                                child: Text(
+                                  listText[index],
+                                  style: GoogleFonts.bebasNeue(fontSize: 24),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 19, 50, 0),
+                              child: Opacity(
+                                opacity: 0.8,
+                                child: Image.asset(
+                                  trailingIcons[index],
+                                  // color: Color(0xFFFBC02D),
+                                  // colorBlendMode: BlendMode.overlay,
+                                  height: 95,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 33, 50, 0),
-                          child: Opacity(
-                            opacity: 0.8,
-                            child: Image.asset(
-                              trailingIcons[index],
-                              // color: Color(0xFFFBC02D),
-                              // colorBlendMode: BlendMode.overlay,
-                              height: 95,
+                          padding: const EdgeInsets.fromLTRB(19, 10, 19, 6),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(24),
+                            child: MaterialButton(
+                              child: SizedBox(height: 90, width: 500),
+                              onPressed: () {
+                                HapticFeedback.vibrate();
+                                changeIsOpen(index);
+                                print(isOpen);
+                              },
                             ),
                           ),
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(19, 24, 19, 6),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(24),
-                        child: MaterialButton(
-                          child: SizedBox(height: 91, width: 500),
-                          onPressed: () {
-                            HapticFeedback.vibrate();
-                            changeIsOpen(index);
-                            print(isOpen);
-                          },
-                        ),
-                      ),
-                    ),
+                    isOpen[index]
+                        ? SizedBox(
+                            height: 210,
+                            child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: database[listText[index]].length,
+                                itemBuilder:
+                                    (BuildContext context, int index2) {
+                                  return Stack(
+                                    children: [
+                                      Card(
+                                        elevation: 0,
+                                        margin:
+                                            EdgeInsets.fromLTRB(19, 10, 0, 6),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(24)),
+                                        child: Container(
+                                          width: 160,
+                                          child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 17,
+                                                        horizontal: 14.0),
+                                                child: Image.asset(
+                                                  "assets/images/Big Shoes Happy Costumer-${numbers[index2]}.png",
+                                                  height: 75,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        8.0, 0, 8, 0),
+                                                child: Text(
+                                                  database[listText[index]]
+                                                          [index2]
+                                                      .toString()
+                                                      .replaceAll("_", " "),
+                                                      textAlign: TextAlign.center,
+                                                  style:
+                                                      GoogleFonts.abrilFatface(
+                                                          fontSize: 20),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            19, 10, 19, 6),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(24),
+                                          child: MaterialButton(
+                                            child: SizedBox(
+                                                height: 200, width: 128),
+                                            onPressed: () {
+                                              HapticFeedback.vibrate();
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                }),
+                          )
+                        : SizedBox(height: 1)
                   ],
                 );
               }))

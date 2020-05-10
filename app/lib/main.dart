@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'screens/code.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Home());
+}
+
+class Home extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(primarySwatch: Colors.grey),
+        color: Colors.grey,
+        home: MyApp());
+  }
 }
 
 class MyApp extends StatefulWidget {
@@ -131,251 +142,250 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, height: 1440, width: 720, allowFontScaling: true);
     numbers.shuffle();
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.grey),
-      color: Colors.grey,
-      home: Scaffold(
-        backgroundColor: Colors.grey[300],
-        body: Container(
-          color: Color(0xFF3F5F9),
-          child: CustomScrollView(
-            slivers: <Widget>[
-              SliverAppBar(
-                elevation: 20,
+    return Scaffold(
+      backgroundColor: Colors.grey[300],
+      body: Container(
+        color: Color(0xFF3F5F9),
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              elevation: 20,
 
-                // stretchTriggerOffset: 400,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(24),
-                        bottomRight: Radius.circular(24))),
-                backgroundColor: Color(0xFFFFFFFF),
-                pinned: this._pinned,
-                snap: this._snap,
-                floating: this._floating,
-                expandedHeight: 276.0,
-                centerTitle: true,
-                flexibleSpace: FlexibleSpaceBar(
-                  title: Text("Algorithm Toolbox",
-                      style: GoogleFonts.abrilFatface(
-                          fontSize: 20, color: Color(0xFF000000))),
-                  background: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(24),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              // Expanded(
-                              //   child:
-                              SizedBox(
-                                width: 40,
-                              ),
-                              Image.asset(
-                                "assets/images/appbar.png",
-                                // fit: BoxFit.fitHeight,
-                              ),
-                              // ),
-                            ],
-                          )),
-                      ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(24),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Image.asset("assets/images/appbartext.png"),
-                            ],
-                          )),
-                    ],
-                  ),
+              // stretchTriggerOffset: 400,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(24),
+                      bottomRight: Radius.circular(24))),
+              backgroundColor: Color(0xFFFFFFFF),
+              pinned: this._pinned,
+              snap: this._snap,
+              floating: this._floating,
+              expandedHeight: 495.0.h,
+              centerTitle: true,
+              flexibleSpace: FlexibleSpaceBar(
+                title: Text("Algorithm Toolbox",
+                    style: GoogleFonts.abrilFatface(
+                        fontSize: 20, color: Color(0xFF000000))),
+                background: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(24),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            // Expanded(
+                            //   child:
+                            SizedBox(
+                              width: 60.w,
+                            ),
+                            Image.asset(
+                              "assets/images/appbar.png",
+                              // fit: BoxFit.fitHeight,
+                            ),
+                            // ),
+                          ],
+                        )),
+                    ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(24),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Image.asset("assets/images/appbartext.png"),
+                          ],
+                        )),
+                  ],
                 ),
               ),
-              SliverList(delegate: new SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                if (index > listText.length - 1) return null;
-                return Column(
-                  children: [
-                    // Padding(padding: EdgeInsets.only(top: 20)),
-                    Stack(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(24),
-                            gradient: LinearGradient(colors: [
-                              Color(0xFFFCA91E),
-                              Color(0xFFFBC02D),
-                              Color(0xFFFFC228),
-                            ]),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color(0x33000000),
-                                  blurRadius: 20,
-                                  offset: Offset(0, 25),
-                                  spreadRadius: -10)
-                            ],
-                          ),
-                          margin: EdgeInsets.fromLTRB(19, 10, 19, 6),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 17, horizontal: 14.0),
-                                child: Image.asset(
-                                  leadingIcons[index],
-                                  height: 55,
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
-                                child: Text(
-                                  listText[index],
-                                  style: GoogleFonts.bebasNeue(fontSize: 24),
-                                ),
-                              ),
-                            ],
-                          ),
+            ),
+            SliverList(delegate: new SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+              if (index > listText.length - 1) return null;
+              return Column(
+                children: [
+                  // Padding(padding: EdgeInsets.only(top: 20)),
+                  Stack(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(24),
+                          gradient: LinearGradient(colors: [
+                            Color(0xFFFCA91E),
+                            Color(0xFFFBC02D),
+                            Color(0xFFFFC228),
+                          ]),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Color(0x33000000),
+                                blurRadius: 20,
+                                offset: Offset(0, 25),
+                                spreadRadius: -10)
+                          ],
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                        margin: EdgeInsets.fromLTRB(19, 10, 19, 6),
+                        child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 19, 50, 0),
-                              child: Opacity(
-                                opacity: 0.8,
-                                child: Image.asset(
-                                  trailingIcons[index],
-                                  // color: Color(0xFFFBC02D),
-                                  // colorBlendMode: BlendMode.overlay,
-                                  height: 95,
-                                ),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 17, horizontal: 14.0),
+                              child: Image.asset(
+                                leadingIcons[index],
+                                height: 98.h,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
+                              child: Text(
+                                listText[index],
+                                style: GoogleFonts.bebasNeue(fontSize: 24),
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(19, 10, 19, 6),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(24),
-                            child: MaterialButton(
-                              child: SizedBox(height: 90, width: 500),
-                              onPressed: () {
-                                HapticFeedback.vibrate();
-                                changeIsOpen(index);
-                                print(isOpen);
-                              },
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 19, 50, 0),
+                            child: Opacity(
+                              opacity: 0.8,
+                              child: Image.asset(
+                                trailingIcons[index],
+                                // color: Color(0xFFFBC02D),
+                                // colorBlendMode: BlendMode.overlay,
+                                height: 170.h,
+                              ),
                             ),
                           ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(19, 10, 19, 6),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(24),
+                          child: MaterialButton(
+                            child: SizedBox(height: 161.h, width: 600.w),
+                            onPressed: () {
+                              HapticFeedback.vibrate();
+                              changeIsOpen(index);
+                              // print(isOpen);
+                            },
+                          ),
                         ),
-                      ],
-                    ),
-                    isOpen[index]
-                        ? SizedBox(
-                            height: 210,
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: database[listText[index]].length,
-                                itemBuilder:
-                                    (BuildContext context, int index2) {
-                                  return Stack(
-                                    children: [
-                                      Card(
-                                        elevation: 0,
-                                        margin:
-                                            EdgeInsets.fromLTRB(19, 10, 0, 6),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(24)),
-                                        child: Container(
-                                          width: 160,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 17,
-                                                        horizontal: 14.0),
-                                                child: Image.asset(
-                                                  "assets/images/Big Shoes Happy Costumer-${numbers[index2]}.png",
-                                                  height: 75,
-                                                ),
+                      ),
+                    ],
+                  ),
+                  isOpen[index]
+                      ? SizedBox(
+                          height: 377.h,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: database[listText[index]].length,
+                              itemBuilder: (BuildContext context, int index2) {
+                                return Stack(
+                                  children: [
+                                    Card(
+                                      elevation: 0,
+                                      margin: EdgeInsets.fromLTRB(19, 10, 0, 6),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(24)),
+                                      child: Container(
+                                        width: 290.w,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 17,
+                                                      horizontal: 14.0),
+                                              child: Image.asset(
+                                                "assets/images/Big Shoes Happy Costumer-${numbers[index2]}.png",
+                                                height: 134.h,
                                               ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        8.0, 0, 8, 0),
-                                                child: Text(
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      8.0, 0, 8, 0),
+                                              child: Text(
+                                                database[listText[index]]
+                                                        [index2]
+                                                    .toString()
+                                                    .replaceAll("_", " "),
+                                                textAlign: TextAlign.center,
+                                                style: GoogleFonts.abrilFatface(
+                                                    fontSize: 20),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          19, 10, 19, 6),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(24),
+                                        child: MaterialButton(
+                                          child:
+                                              SizedBox(height: 359.h, width: 232.w),
+                                          onPressed: () {
+                                            HapticFeedback.vibrate();
+                                            Navigator.push(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                              return CodeBD(
                                                   database[listText[index]]
                                                           [index2]
-                                                      .toString()
-                                                      .replaceAll("_", " "),
-                                                  textAlign: TextAlign.center,
-                                                  style:
-                                                      GoogleFonts.abrilFatface(
-                                                          fontSize: 20),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                                      .toString());
+                                            }));
+                                          },
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            19, 10, 19, 6),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(24),
-                                          child: MaterialButton(
-                                            child: SizedBox(
-                                                height: 200, width: 128),
-                                            onPressed: () {
-                                              HapticFeedback.vibrate();
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  );
-                                }),
-                          )
-                        : SizedBox(height: 1)
-                  ],
-                );
-              }))
-              // SliverFixedExtentList(
-              //   itemExtent: 350.0,
-              //   delegate: SliverChildListDelegate.fixed(
-              //     [
-              //       Container(
-              //         child: Padding(
-              //           padding: const EdgeInsets.all(8.0),
-              //           child: Card(),
-              //         ),
-              //         color: Color(0xFF3F5F9),
-              //       ),
-              //       Container(
-              //         child: Padding(
-              //           padding: const EdgeInsets.all(8.0),
-              //           child: Card(),
-              //         ),
-              //         color: Color(0xFF3F5F9),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // SliverFillRemaining(
-              //   child:
-              // ),
-            ],
-          ),
+                                    ),
+                                  ],
+                                );
+                              }),
+                        )
+                      : Container()
+                ],
+              );
+            }))
+            // SliverFixedExtentList(
+            //   itemExtent: 350.0,
+            //   delegate: SliverChildListDelegate.fixed(
+            //     [
+            //       Container(
+            //         child: Padding(
+            //           padding: const EdgeInsets.all(8.0),
+            //           child: Card(),
+            //         ),
+            //         color: Color(0xFF3F5F9),
+            //       ),
+            //       Container(
+            //         child: Padding(
+            //           padding: const EdgeInsets.all(8.0),
+            //           child: Card(),
+            //         ),
+            //         color: Color(0xFF3F5F9),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // SliverFillRemaining(
+            //   child:
+            // ),
+          ],
         ),
       ),
     );

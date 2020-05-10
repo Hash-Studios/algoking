@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CodeBD extends StatefulWidget {
-  CodeBD({Key key}) : super(key: key);
+  String title;
+  CodeBD(this.title, {Key key}) : super(key: key);
 
   @override
   _CodeBDState createState() => _CodeBDState();
@@ -23,7 +24,7 @@ class _CodeBDState extends State<CodeBD> {
       ],
       headerHeight: 100.h,
       iconPosition: BackdropIconPosition.none,
-      title: Text("Binary Search"),
+      title: Text(widget.title.replaceAll("_", " ")),
       backLayer: Center(
         child: Text("Back Layer"),
       ),

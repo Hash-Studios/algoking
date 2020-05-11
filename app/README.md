@@ -21,7 +21,12 @@ Algorithm Toolbox is an Android app for C++, Python and DART algorithms. It show
 
 ## Demo
 
-
+![](demo/1.jpg)
+![](demo/2.jpg)
+![](demo/3.jpg)
+![](demo/4.jpg)
+![](demo/5.jpg)
+![](demo/6.jpg)
 
 ## Dependencies
 This app uses the following packages -
@@ -31,14 +36,8 @@ This app uses the following packages -
 - `flutter_syntax_view: ^1.0.0`
 - `font_awesome_flutter: ^8.8.1`
 
-More details about these can be found in the [`pubspec.yaml`](https://github.com/codenameakshay/algoking/tree/master/pubspec.yaml) file.
+More details about these can be found in the [`pubspec.yaml`](https://github.com/codenameakshay/algoking/tree/master/app/pubspec.yaml) file.
 
-## Usage
-
-The application files for Android devices can be found under the [`bin`](https://github.com/codenameakshay/algoking/tree/master/bin) folder.
-- [`app-arm64-v8a-release`](/bin/app-arm64-v8a-release.apk) For most users, this will work. It is for ARM x64 based devices.
-- [`app-armeabi-v7a-release`](/bin/app-armeabi-v7a-release.apk) It is for ARM-based devices.
-- [`app-x86_64-release`](/bin/app-x86_64-release.apk) It is for x86 based devices.
 
 ## Development
 

@@ -8,6 +8,8 @@ import 'package:app/code/python.dart';
 import 'package:app/code/cpp.dart';
 import 'package:app/code/dart.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:clipboard_manager/clipboard_manager.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CodeBD extends StatefulWidget {
   String title;
@@ -88,6 +90,22 @@ int main() {
         frontLayerBorderRadius: BorderRadius.only(
             topLeft: Radius.circular(24), topRight: Radius.circular(24)),
         actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.content_copy),
+            onPressed: () {
+              ClipboardManager.copyToClipBoard(CPP.code[widget.title])
+                  .then((result) {
+                Fluttertoast.showToast(
+                    msg: "Copied code to clipboard",
+                    // toastLength: Toast.LENGTH_SHORT,
+                    // gravity: ToastGravity.CENTER,
+                    // timeInSecForIosWeb: 1,
+                    // backgroundColor: Colors.red,
+                    // textColor: Colors.white,
+                    fontSize: 16.0);
+              });
+            },
+          ),
           BackdropToggleButton(
             icon: AnimatedIcons.view_list,
           ),
@@ -100,28 +118,14 @@ int main() {
         ),
         backLayer: Column(
           children: <Widget>[
-            TabBar(
-              indicatorColor: Colors.white,
-              tabs: [
-                Tab(
-                  icon: Icon(FontAwesomeIcons.plus),
-                ),
-                Tab(
-                  icon: Icon(FontAwesomeIcons.python),
-                ),
-                Tab(
-                  icon: Icon(FontAwesomeIcons.bullseye),
-                ),
-              ],
-            ),
             Expanded(
-              flex: 13,
+              flex: 22,
               child: TabBarView(children: [
                 new Container(
                   child: SyntaxView(
                     code: CPP.code[widget.title],
                     syntax: Syntax.DART,
-                    syntaxTheme: SyntaxTheme.ayuLight(),
+                    syntaxTheme: SyntaxTheme.gravityLight(),
                     withZoom: true,
                     withLinesCount: true,
                   ),
@@ -130,7 +134,7 @@ int main() {
                   child: SyntaxView(
                     code: PYTHON.code[widget.title],
                     syntax: Syntax.DART,
-                    syntaxTheme: SyntaxTheme.ayuLight(),
+                    syntaxTheme: SyntaxTheme.gravityLight(),
                     withZoom: true,
                     withLinesCount: true,
                   ),
@@ -139,17 +143,35 @@ int main() {
                   child: SyntaxView(
                     code: DART.code[widget.title],
                     syntax: Syntax.DART,
-                    syntaxTheme: SyntaxTheme.ayuLight(),
+                    syntaxTheme: SyntaxTheme.gravityLight(),
                     withZoom: true,
                     withLinesCount: true,
                   ),
                 ),
               ]),
             ),
+            TabBar(
+              indicatorColor: Colors.black,
+              indicatorSize: TabBarIndicatorSize.label,
+              tabs: [
+                Tab(
+                  icon: Icon(FontAwesomeIcons.plus),
+                  text: "C++",
+                ),
+                Tab(
+                  icon: Icon(FontAwesomeIcons.python),
+                  text: "Python",
+                ),
+                Tab(
+                  icon: Icon(FontAwesomeIcons.bullseye),
+                  text: "Dart",
+                ),
+              ],
+            ),
             Expanded(
-              flex: 1,
+              flex: 2,
               child: Container(
-                color: Colors.grey[100],
+                color: Colors.amber,
               ),
             )
           ],

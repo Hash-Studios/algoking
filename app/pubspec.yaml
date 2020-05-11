@@ -28,6 +28,8 @@ dependencies:
   flutter_screenutil: ^1.1.0
   flutter_syntax_view: ^1.0.0
   font_awesome_flutter: ^8.8.1
+  clipboard_manager: ^0.0.4
+  fluttertoast: ^4.0.1
 
 
   # The following adds the Cupertino Icons font to your application.

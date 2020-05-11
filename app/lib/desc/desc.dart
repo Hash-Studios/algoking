@@ -141,7 +141,8 @@ Time Complexity: O(n2) as there are two nested loops.
 
 Auxiliary Space: O(1)
 The good thing about selection sort is it never makes more than O(n) swaps and can be useful when memory write is a costly operation.""",
-    "Even_Odd": """""",
+    "Even_Odd":
+        """C programs to check odd or even using different methods. In the decimal number system, even numbers are exactly divisible by two while odd numbers are not. We can use modulus operator '%' which returns the remainder, for example, 4%3 = 1 (remainder when four is divided by three).""",
     "Factorial":
         """Factorial of a non-negative integer, is multiplication of all integers smaller than or equal to n. For example factorial of 6 is 6*5*4*3*2*1 which is 720.
 

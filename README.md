@@ -21,12 +21,12 @@ Algorithm Toolbox is an Android app for C++, Python and DART algorithms. It show
 
 ## Demo
 
-![](demo/1.jpg)
-![](demo/2.jpg)
-![](demo/3.jpg)
-![](demo/4.jpg)
-![](demo/5.jpg)
-![](demo/6.jpg)
+![](app/demo/1.jpg)
+![](app/demo/2.jpg)
+![](app/demo/3.jpg)
+![](app/demo/4.jpg)
+![](app/demo/5.jpg)
+![](app/demo/6.jpg)
 
 ## Dependencies
 This app uses the following packages -

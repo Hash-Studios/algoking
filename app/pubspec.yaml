@@ -22,7 +22,6 @@ environment:
 
 dependencies:
   backdrop: ^0.6.2
-  clipboard_manager: ^0.0.4
   cupertino_icons: ^1.0.3
   flutter:
     sdk: flutter

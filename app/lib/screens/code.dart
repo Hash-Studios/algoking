@@ -2,10 +2,10 @@ import 'package:app/ui/code.dart';
 import 'package:app/ui/desc.dart';
 import 'package:flutter/material.dart';
 import 'package:backdrop/backdrop.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:app/code/cpp.dart';
-import 'package:clipboard_manager/clipboard_manager.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CodeBD extends StatefulWidget {
@@ -31,11 +31,9 @@ class _CodeBDState extends State<CodeBD> {
           IconButton(
             icon: Icon(Icons.content_copy),
             onPressed: () {
-              ClipboardManager.copyToClipBoard(CPP.code[widget.title])
-                  .then((result) {
-                Fluttertoast.showToast(
-                    msg: "Copied code to clipboard", fontSize: 16.0);
-              });
+              Clipboard.setData(ClipboardData(text: CPP.code[widget.title]));
+              Fluttertoast.showToast(
+                  msg: "Copied code to clipboard", fontSize: 16.0);
             },
           ),
           BackdropToggleButton(

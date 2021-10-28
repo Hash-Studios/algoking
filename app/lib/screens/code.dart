@@ -19,7 +19,9 @@ class CodeBD extends StatefulWidget {
 class _CodeBDState extends State<CodeBD> {
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, width: 720, height: 1440, allowFontScaling: true);
+    // ScreenUtil.init(
+    //   BoxConstraints(minHeight: 1440, minWidth: 720),
+    // );
     return DefaultTabController(
       length: 3,
       child: BackdropScaffold(

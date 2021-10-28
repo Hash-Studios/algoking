@@ -121,7 +121,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, height: 1440, width: 720, allowFontScaling: true);
     numbers.shuffle();
     return Scaffold(
       backgroundColor: Colors.grey[300],

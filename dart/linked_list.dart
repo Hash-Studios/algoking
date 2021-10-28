@@ -1,5 +1,5 @@
 class Node<T> {
-  Node<T> next;
+  late Node<T> next;
   T value;
 
   Node(this.value);
@@ -28,20 +28,20 @@ class LinkedList<T> extends Iterable<T> {
   int _length = 0;
   int get length => this._length;
 
-  Node<T> _head;
+  late Node<T> _head;
 
   @override
   Iterator<T> get iterator => new LinkedListIterator<T>(this._head);
 
   void remove(T item) {
-    if (this._head?.value == item) {
-      this._head = this._head?.next;
+    if (this._head.value == item) {
+      this._head = this._head.next;
       this._length--;
     }
 
     if (this._head != null) {
       Node<T> current = this._head;
-      while (current?.next != null) {
+      while (current.next != null) {
         if (current.next.value == item) {
           current.next = current.next.next;
           this._length--;
@@ -52,7 +52,7 @@ class LinkedList<T> extends Iterable<T> {
     }
   }
 
-  T pop() {
+  T? pop() {
     if (this._head != null) {
       T value = this._head.value;
       this._head = this._head.next;
@@ -60,7 +60,7 @@ class LinkedList<T> extends Iterable<T> {
 
       return value;
     }
-    
+
     return null;
   }
 
@@ -74,7 +74,7 @@ class LinkedList<T> extends Iterable<T> {
       this._head = new Node(item);
     } else {
       Node<T> current = this._head;
-      while (current?.next != null) {
+      while (current.next != null) {
         current = current.next;
       }
 

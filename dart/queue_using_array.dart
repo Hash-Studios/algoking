@@ -1,34 +1,32 @@
 const int MAX_SIZE = 10;
 
-class ListQueue<T>{
-  
+class ListQueue<T> {
   int count = 0;
-  List<T> queue = new List<T>(MAX_SIZE);
-  bool hasElements(){
-    if(queue.length == 0){
+  List queue = new List.filled(MAX_SIZE, null);
+  bool hasElements() {
+    if (queue.length == 0) {
       return false;
-    }
-    else{
+    } else {
       return true;
     }
   }
-  void enque(T elment){
-    if(count == MAX_SIZE){
+
+  void enque(T elment) {
+    if (count == MAX_SIZE) {
       print("The queue is full!!!");
-    }
-    else{
+    } else {
       queue[count] = elment;
       count++;
     }
   }
-  T deque(){
-    T result = null;
-    if(count == 0){
+
+  T deque() {
+    late T result;
+    if (count == 0) {
       print("The queue is empty!!!");
-    }
-    else{
+    } else {
       result = queue[0];
-      for(int i = 0; i < queue.length - 1; i++){
+      for (int i = 0; i < queue.length - 1; i++) {
         queue[i] = queue[i + 1];
       }
     }
@@ -36,7 +34,7 @@ class ListQueue<T>{
   }
 }
 
-void main(){
+void main() {
   ListQueue<int> Queue = new ListQueue<int>();
   Queue.enque(12);
   Queue.enque(2);
